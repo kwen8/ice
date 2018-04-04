@@ -4,7 +4,7 @@ import config from '../config'
 
 export const router = app => {
   const router = new Router()
-  router.get('wechat-hear', (ctx, next) => {
+  router.get('/wechat', (ctx, next) => {
     const token = config.wechat.token
     const {
       signature,
@@ -12,14 +12,13 @@ export const router = app => {
       timestamp,
       echostr
     } = ctx.query
-
     const str = [token, timestamp, nonce].sort().join('')
     const sha = sha1(str)
-
+    console.log(signature)
     if (signature === sha) {
       ctx.body = echostr
     } else {
-      ctx.body = 'failed'
+      ctx.body = signature + ' sssssssss ' + sha
     }
   })
 

@@ -13,3 +13,4 @@ dist
 #system
 .DS_Store
 build
+.idea
